@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Backoffice</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg p-0 bg-warning">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img
+            class="logo"
+            src="assets/img/restaurant-3418134_640.png"
+            alt="Image by Mudassar Iqbal from Pixabay"
+            width="100px"
+            height="60px"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="d-flex">
+        <div class="add">
+          <img src="assets/img/restaurant-3418134_640.png" alt="" />
+        </div>
+        <div class="d-flex flex-column mt-4 ms-4">
+          <h3 class="mt-3 mb-3">Aggiungi un prodotto :</h3>
+          <form>
+            <div class="mb-4">
+              <input
+                id="name"
+                type="text"
+                placeholder="Nome prodotto"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <input
+                id="description"
+                type="text"
+                placeholder="Descrizione prodotto"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <input
+                id="brand"
+                type="text"
+                placeholder="Brand prodotto"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <input
+                id="imageUrl"
+                type="text"
+                placeholder="URL immagine"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <input id="quality" type="text" placeholder="Qualità" required />
+            </div>
+            <div class="mb-4">
+              <input id="price" type="text" placeholder="Prezzo" required />
+            </div>
+            <div class="mb-4">
+              <button id="salva" class="bg-success text-white">Salva</button>
+              <button id="elimina" class="bg-danger text-white">Elimina</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const prodottiurl = "https://striveschool-api.herokuapp.com/api/product/";
+
+      let form = document.getElementsByTagName("form")[0];
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let elementinuovi = {
+          brand: document.getElementById("brand").value,
+          name: document.getElementById("name").value,
+          description: document.getElementById("description").value,
+          price: document.getElementById("price").value,
+          quality: document.getElementById("quality").value,
+          imageUrl: document.getElementById("imageUrl").value,
+        };
+        console.log(elementinuovi);
+
+        fetch("https://striveschool-api.herokuapp.com/api/product/", {
+          method: "POST",
+          body: JSON.stringify(elementinuovi),
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0M2EzNWY4MWI0MjAwMTM5YjI4MzUiLCJpYXQiOjE2NzkwNDcyMjMsImV4cCI6MTY4MDI1NjgyM30.utzdk1ZW8pDH7zbitEJl2U7PFjkbMLNgefAzoj5BJoU",
+            "content-type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("prodotto salvato");
+            } else {
+              alert("problema nella creazione del prodotto");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+  </body>
+</html>

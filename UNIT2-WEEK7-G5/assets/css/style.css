@@ -1,0 +1,15 @@
+/*Backoffice*/
+.logo {
+  border: 3px solid rgb(126, 102, 74);
+  border-radius: 100%;
+  background-color: bisque;
+}
+
+.add {
+  border-right: 1px solid gray;
+}
+
+form button {
+  border: transparent;
+  border-radius: 20px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Details</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h4>Prodotto</h4>
+          <div id="item-info">
+            <div class="spinner-border text-success" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const url = new URLSearchParams(window.location.search);
+      const idOggetto = url.get("id");
+      const keyFetch = {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0M2EzNWY4MWI0MjAwMTM5YjI4MzUiLCJpYXQiOjE2NzkwNDcyMjMsImV4cCI6MTY4MDI1NjgyM30.utzdk1ZW8pDH7zbitEJl2U7PFjkbMLNgefAzoj5BJoU",
+        },
+      };
+      window.onload = async () => {
+        const item = document.getElementById("item-info");
+        const prodottiurl =
+          "https://striveschool-api.herokuapp.com/api/product/";
+        try {
+          const response = await fetch(prodottiurl + idOggetto, keyFetch);
+          const parseObject = await response.json();
+          const {
+            _id,
+            name,
+            description,
+            brand,
+            imageUrl,
+            price,
+            userId,
+            createdAt,
+            updatedAt,
+            __v,
+          } = parseObject;
+          item.innerHTML = `
+                <div class="card prodotto">
+                <img class="resize" src=${imageUrl}">
+                    <div class="card-body text-center">
+
+
+                        <p class="text-success">prodotto da: ${name}</p>
+                        <p class="text-success">prodotto da: ${description}</p>
+                        <p class="text-success">prodotto da: ${brand}</p>
+                        <p class="text-success">prodotto da: ${price}</p>
+                        <p class="text-success">prodotto da: ${_id}</p>
+                        <p class="text-success">prodotto da: ${createdAt}</p>
+                        <p class="text-success">prodotto da: ${updatedAt}</p>
+
+                        <span class="badge bg-warning"> quality: <span class="text-info">-DIAMOND- </span></span>
+                        <div class="d-flex justify-content-evenly mt-3">
+
+                    </div>
+                </div>
+                `;
+        } catch (err) {
+          alert(err.message);
+        }
+      };
+    </script>
+  </body>
+</html>

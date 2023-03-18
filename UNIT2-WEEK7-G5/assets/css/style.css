@@ -13,3 +13,24 @@ form button {
   border: transparent;
   border-radius: 20px;
 }
+
+/*Home*/
+.sfondo {
+    background-color: lemonchiffon;
+}
+
+.resize {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.prodotto{
+    background-color: bisque;
+}
+
+.dettagli {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}

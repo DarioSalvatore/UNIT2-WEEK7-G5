@@ -12,7 +12,7 @@ fetch("https://striveschool-api.herokuapp.com/api/product/", {
 
             events.forEach((element) => {
                 const col = document.createElement("div");
-                col.className = "col-10 justify-center mt-4 mb-4 col-md-6 col-lg-4 col-xl-3";
+                col.className = "col-12 justify-center mt-2 mb-4 col-md-6 col-lg-4 col-xl-3 prodotto-container";
                 col.innerHTML = `
                 <div class="card prodotto">
                 <img class="resize" src=${element.imageUrl}">
@@ -28,8 +28,8 @@ fetch("https://striveschool-api.herokuapp.com/api/product/", {
                             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
                             </svg>
                         </button>
-                        <button class="btn btn-light px-2"><a class="dettagli" href="details.html?id=${element._id}">Dettagli</a></button>
-                        <button class="btn btn-light px-2"><a class="dettagli" href="backoffice.html?id=${element._id}">Modifica</a></button>
+                        <button class="btn btn-light px-2"><a class="dettagli" href="details.html?id=${element._id}" target="_blank">Dettagli</a></button>
+                        <button class="btn btn-light px-2"><a class="dettagli" href="backoffice.html?id=${element._id}" target="_blank">Modifica</a></button>
                     </div>
                 </div>
                 `;

@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Backoffice</title>
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg p-0 bg-warning">
+  <body class="sfondo">
+    <nav class="navbar navbar-expand-lg p-0 bg-warning position-fixed top-0">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"
           ><img
@@ -38,23 +38,26 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Home</a
-              >
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <main>
-      <div class="d-flex">
+      <div class="d-flex justify-content-center father">
         <div class="add">
-          <img src="assets/img/restaurant-3418134_640.png" alt="" />
+          <img
+            src="assets/img/restaurant-3418134_640.png"
+            alt="Logo-brand"
+            width="300rem"
+            class="mt-5 me-3"
+          />
         </div>
         <div class="d-flex flex-column mt-4 ms-4">
-          <h3 id="giovanni" class="mt-3 mb-3">Aggiungi un prodotto :</h3>
+          <h3 id="titolo" class="mt-3 mb-3">Aggiungi un prodotto :</h3>
           <form>
-            <div class="mb-4">
+            <div class="mb-3 mt-2">
               <input
                 id="name"
                 type="text"
@@ -62,7 +65,8 @@
                 required
               />
             </div>
-            <div class="mb-4">
+            <hr />
+            <div class="mb-3 mt-3">
               <input
                 id="description"
                 type="text"
@@ -70,7 +74,8 @@
                 required
               />
             </div>
-            <div class="mb-4">
+            <hr />
+            <div class="mb-3 mt-3">
               <input
                 id="brand"
                 type="text"
@@ -78,7 +83,8 @@
                 required
               />
             </div>
-            <div class="mb-4">
+            <hr />
+            <div class="mb-3 mt-3">
               <input
                 id="imageUrl"
                 type="text"
@@ -86,18 +92,29 @@
                 required
               />
             </div>
-
-            <div class="mb-4">
+            <hr />
+            <div class="mb-3 mt-3">
               <input id="price" type="text" placeholder="Prezzo" required />
             </div>
-            <div class="mb-4">
-              <button id="salva" class="bg-success text-white">Salva</button>
-              <button
-                id="elimina"
-                class="bg-danger text-white d-none"
-                onclick="gestisciDelete()"
-              >
+            <hr />
+            <div class="mb-3 mt-3">
+              <button id="salva">Salva</button>
+              <button id="elimina" class="d-none" onclick="gestisciDelete()">
                 Elimina
+              </button>
+              <button id="pulisci" onclick="svuotaCampi()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-trash-fill mb-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
+                  />
+                </svg>
               </button>
             </div>
           </form>
@@ -125,7 +142,7 @@
       window.onload = async () => {
         if (idOggetto) {
           const form = document.getElementsByTagName("form")[0];
-          document.getElementById("giovanni").innerText = "Modifica prodotto";
+          document.getElementById("titolo").innerText = "Modifica prodotto";
           document.getElementById("elimina").classList.remove("d-none");
           document.getElementById("salva").innerText = "Salva modifiche";
           try {
@@ -205,6 +222,13 @@
           } catch (err) {
             alert(err.message);
           }
+        }
+      };
+      const svuotaCampi = () => {
+        const pensaci = confirm("Vuoi davvero svuotare i campi?");
+        if (pensaci) {
+          const svuotaForm = document.querySelector("form");
+          svuotaForm.reset();
         }
       };
     </script>

@@ -171,11 +171,11 @@
         }
       };
 
-      let form = document.getElementsByTagName("form")[0];
+      const form = document.getElementsByTagName("form")[0];
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        let elementinuovi = {
+        const elementinuovi = {
           brand: document.getElementById("brand").value,
           name: document.getElementById("name").value,
           description: document.getElementById("description").value,
